@@ -72,7 +72,7 @@ if [ ! -d $CODE_DIR/develop/${EXTEND_REPO_NAME}/.git ]; then
 else
   echo "扩展 ${EXTEND_REPO_NAME} 代码已存在"
   echo "更新扩展 ${EXTEND_REPO_NAME} 代码"
-  cd $CODE_DIR/develop/${EXTEND_REPO_NAME} && git reset --hard && git pull
+  cd $CODE_DIR/develop/${EXTEND_REPO_NAME} && git reset --hard && git pull & { sleep 60 ; kill $! & }
 fi
 
 
@@ -132,5 +132,3 @@ echo -e "=================== 启动完毕，如果第一次配置机器人，请
 
 crond -f >/dev/null 2>&1
 exec "$@"
-
-
